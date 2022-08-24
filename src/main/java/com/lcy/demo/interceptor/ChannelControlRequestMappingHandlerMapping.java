@@ -1,4 +1,4 @@
-package com.posx.oms.api.openapi.config;
+package com.lcy.demo.interceptor;
 
 
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;

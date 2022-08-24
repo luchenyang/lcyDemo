@@ -1,2 +1,5 @@
-package com.lcy.demo.interceptor;public class UserInterceptor {
+package com.lcy.demo.interceptor;
+
+public class UserInterceptor {
+
 }
