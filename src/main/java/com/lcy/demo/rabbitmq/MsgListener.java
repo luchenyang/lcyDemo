@@ -1,2 +1,8 @@
-package com.lcy.demo.rabbitmq;public class MsgListener {
+package com.lcy.demo.rabbitmq;
+
+
+public class MsgListener {
+
+
+
 }
