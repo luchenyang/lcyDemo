@@ -1,7 +1,6 @@
 package com.lcy.demo.springcloud.openfegin;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @description:
