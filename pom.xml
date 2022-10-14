@@ -18,7 +18,66 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <dependencyManagement>
+        <!--dependencies  即使在子项目中不写该依赖项，那么子项目仍然会从父项目中继承该依赖项（全部继承）
+            dependencyManagement里  只是声明依赖，并不实现引入，因此子项目需要显示的声明需要用的依赖。
+            如果不在子项目中声明依赖，是不会从父项目中继承下来的；只有在子项目中写了该依赖项，并且没有指定具体版本，
+            才会从父项目中继承该项，并且version和scope都读取自父pom;另外如果子项目中指定了版本号，那么会使用子项目中指定的jar版本。
+        -->
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.RELEASE</version>
+                <scope>import</scope>
+                <!--
+                    compile
+                    编译依赖范围。如果没有指定，就会默认使用该依赖范围。使用此依赖范围的Maven 依赖，对于编译、测试、运行三种classpath 都有效。
+                    典型的例子是spring-core,在编译、测试和运行的时候都需要使用该依赖。
+                    既然运行时也要使用 scope 设为 compile 的依赖，
+                    所以 scope 为 compile 的依赖在项目打部署包的时候（即构建 artifact）会被一起打包，会放在 WEB-INF/lib 目录下。
+
+                    test
+                    测试依赖范围。使用此依赖范围的Maven依赖，只对于测试classpath有效，在编译主代码或者运行项目的使用时将无法使用此类依赖。
+                    典型的例子是JUnit,它只有在编译测试代码及运行测试的时候才需要。只在测试时使用，用于编译和运行测试代码，不会参与项目的打包。
+
+                    provided
+                    已提供依赖范围。使用此依赖范围的Maven依赖，对于编译和测试classpath有效，但在运行时无效（对运行的classpath无效）。
+                    典型的例子是 servlet-api, 编译和测试项目的时候需要该依赖，但在运行项目的时候，由于容器已经提供，就不需要Maven重复地引人一遍。
+                    既然运行时容器会提供，所以 scope 为 provided 的依赖不会参与项目的打包。
+
+                    runtime
+                    运行时依赖范围。使用此依赖范围的Maven依赖，对于测试和运行class-path有效，但在编译主代码时无效（对编译的classpath无效）。
+                    典型的例子是JDBC驱动实现，项目主代码的编译只需要JDK提供的JDBC接口，只有在执行测试或者运行项目的时候才需要实现上述接口的具体JDBC驱动。
+                    既然运行时也要使用 scope 设为 provided 的依赖，所以 scope 为 provided 的依赖在项目打部署包的时候（即构建 artifact）会被一起打包，会放在 WEB-INF/lib 目录下。
+
+                    system
+                    系统依赖范围。该依赖与三种 classpath 的关系，和 provided 依赖范围完全一致。
+                    但是，system 范围的依赖不会从 maven 仓库下载，而是从本地文件系统获取，使用 system 范围的依赖时必须通过 <systemPath> 元素显式地指定依赖文件的路径。
+                    由于此类依赖不是通过 Maven 仓库解析的，而且往往与本机系统绑定，可能造成构建（构建的产物有：classes和artifact）的不可移植，因此应该谨慎使用。
+
+                    import
+                    导入依赖范围，该依赖范围不会对三种 classpath 产生影响，该依赖范围只能与 <dependencyManagement> 元素配合使用，
+                    其功能为将目标pom.xml 文件中元素 <dependencyManagement> 的配置导入合并到当前 pom.xml 文件的元素 <dependencyManagement> 中
+                -->
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -61,7 +120,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+
+
     </dependencies>
+
+
 
     <build>
         <plugins>
