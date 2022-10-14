@@ -31,6 +31,7 @@ import java.util.Objects;
 @Log4j2
 public class ReqLogFilter extends OncePerRequestFilter {
 
+    //OncePerRequestFilter  只执行一次过滤器
 
     /**
      * 排除上传文件类请求

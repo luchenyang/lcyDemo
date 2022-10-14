@@ -5,6 +5,5 @@ package com.lcy.demo.beanregister;
  * @author: luchenyang
  * @date: 2022/10/14
  */
-@TestBean
 public class TestServer {
 }

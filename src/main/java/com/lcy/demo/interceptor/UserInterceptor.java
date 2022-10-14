@@ -1,5 +1,7 @@
 package com.lcy.demo.interceptor;
 
-public class UserInterceptor {
+import org.springframework.web.servlet.HandlerInterceptor;
+
+public class UserInterceptor implements HandlerInterceptor {
 
 }
