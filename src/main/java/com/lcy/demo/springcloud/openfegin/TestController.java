@@ -2,9 +2,11 @@ package com.lcy.demo.springcloud.openfegin;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping(value = "/test")
 public class TestController implements TestApi {
 
 

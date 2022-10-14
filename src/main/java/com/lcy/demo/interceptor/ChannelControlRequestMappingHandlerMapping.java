@@ -1,6 +1,10 @@
 package com.lcy.demo.interceptor;
 
 
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.core.annotation.AnnotatedElementUtils;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
@@ -21,6 +25,12 @@ public class ChannelControlRequestMappingHandlerMapping extends RequestMappingHa
             }
         }
         return info;
+    }
+
+    @Override
+    protected boolean isHandler(Class<?> beanType) {
+        return (AnnotatedElementUtils.hasAnnotation(beanType, Controller.class) || AnnotatedElementUtils.hasAnnotation(beanType, RequestMapping.class))
+        && !AnnotatedElementUtils.hasAnnotation(beanType, FeignClient.class);
     }
 
 
