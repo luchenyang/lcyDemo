@@ -1,6 +1,6 @@
 package com.lcy.demo;
 
-import com.lcy.demo.beanregister.TestBean;
+import com.lcy.demo.bean.register.TestBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;

@@ -1,4 +1,4 @@
-package com.lcy.demo.beanregister;
+package com.lcy.demo.bean.register;
 
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
@@ -24,7 +24,7 @@ public class TestServerResister implements ImportBeanDefinitionRegistrar {
 //   假如不需要名称，那么使用BeanDefinitionReaderUtils.registerWithGeneratedName(beanDefinitionBuilder.getBeanDefinition(), registry);
 
 //        BeanDefinitionReaderUtils.registerBeanDefinition(holder, registry);
-        BeanDefinitionReaderUtils.registerWithGeneratedName(beanDefinition,registry);
+        BeanDefinitionReaderUtils.registerWithGeneratedName(beanDefinition, registry);
 //        registry.registerBeanDefinition("a",beanDefinition);
     }
 

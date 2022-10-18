@@ -1,4 +1,4 @@
-package com.lcy.demo.beanregister;
+package com.lcy.demo.bean.register;
 
 import org.springframework.context.annotation.Import;
 
