@@ -44,8 +44,9 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        // 链接的时候，websocket会自己增加同源检测的功能，需要单独配置是否允许跨域，我配置*代表允许所有的ip进行调用。
         registry.addHandler(myHandler(), "/wstest").addInterceptors(myShake()).setAllowedOriginPatterns("*");
+        //SockJS 是和websokcet 一样的基础协议 有的浏览器没有websocket
+        registry.addHandler(myHandler(), "/wstest").addInterceptors(myShake()).setAllowedOriginPatterns("*").withSockJS();
     }
     @Bean
     public WebSocketHandler myHandler() {
