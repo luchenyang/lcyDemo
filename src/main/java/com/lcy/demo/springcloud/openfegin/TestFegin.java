@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @FeignClient(url = "127.0.0.1:8080",fallback = TestFallBack.class,name = "aa")
 @RequestMapping("/test")
-public interface TestFegin{
+public interface TestFegin {
+
     @GetMapping("/getsomeThing")
     public String getsto();
+
 }

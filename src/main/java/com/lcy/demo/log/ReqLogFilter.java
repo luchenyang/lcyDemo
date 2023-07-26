@@ -12,7 +12,6 @@ import org.springframework.web.util.ContentCachingResponseWrapper;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
@@ -27,7 +26,7 @@ import java.util.Objects;
  * @date: 2022/8/24
  */
 
-@WebFilter(filterName = "CharsetFilter", urlPatterns = "/*")
+//@WebFilter(filterName = "CharsetFilter", urlPatterns = "/*")
 @Log4j2
 public class ReqLogFilter extends OncePerRequestFilter {
 

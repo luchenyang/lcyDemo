@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.Valid;
 
 /**
  * @description:
@@ -17,7 +16,6 @@ import javax.validation.Valid;
 @NoArgsConstructor
 @Builder
 public class RequestModel<T> {
-    @Valid
     private T param;
 
     private String companyCode;
