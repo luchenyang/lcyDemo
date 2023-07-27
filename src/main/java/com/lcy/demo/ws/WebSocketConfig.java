@@ -46,7 +46,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(myHandler(), "/wstest").addInterceptors(myShake()).setAllowedOriginPatterns("*");
         //SockJS 是和websokcet 一样的基础协议 有的浏览器没有websocket
-        registry.addHandler(myHandler(), "/wstest").addInterceptors(myShake()).setAllowedOriginPatterns("*").withSockJS();
+        registry.addHandler(myHandler(), "/socktest").addInterceptors(myShake()).setAllowedOriginPatterns("*").withSockJS();
     }
     @Bean
     public WebSocketHandler myHandler() {
