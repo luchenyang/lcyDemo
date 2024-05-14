@@ -20,7 +20,7 @@ import java.util.UUID;
 
 @Configuration
 @Slf4j
-public class RabbitMqConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback {
+public class RabbitMqConfig  {
 
 
     public static final String MRP_EXCHANGE = "mrp-direct-exchange";
@@ -50,6 +50,8 @@ public class RabbitMqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
         connectionFactory.setPassword(password);
         connectionFactory.setVirtualHost("/");
         connectionFactory.setPublisherConfirmType(CachingConnectionFactory.ConfirmType.CORRELATED);
+
+        connectionFactory.setChannelCheckoutTimeout(1000);
         return connectionFactory;
     }
 
@@ -96,8 +98,21 @@ public class RabbitMqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
     public RabbitTemplate rabbitTemplate() {
         RabbitTemplate template = new RabbitTemplate(connectionFactory());
         template.setMessageConverter(new Jackson2JsonMessageConverter());
-        template.setConfirmCallback(this);
-        template.setReturnCallback(this);
+        template.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
+            @Override
+            public void confirm(CorrelationData correlationData, boolean b, String s) {
+                log.info("correlationData,{}", correlationData);
+                log.info("boolean,{}", b);
+                log.info("content,{}", s);
+
+            }
+        });
+        template.setReturnsCallback(new RabbitTemplate.ReturnsCallback() {
+            @Override
+            public void returnedMessage(ReturnedMessage returnedMessage) {
+                log.info("returnedMessage,{}", returnedMessage);
+            }
+        });
         return template;
     }
 
@@ -118,21 +133,7 @@ public class RabbitMqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
 
 
 
-    @Override
-    public void confirm(CorrelationData correlationData, boolean b, String s) {
-        log.info("correlationData,{}", correlationData);
-        log.info("boolean,{}", b);
-        log.info("content,{}", s);
-    }
 
-    @Override
-    public void returnedMessage(Message message, int i, String s, String s1, String s2) {
-        log.info("message,{}", message);
-        log.info("i,{}", i);
-        log.info("s,{}", s);
-        log.info("s1,{}", s1);
-        log.info("s2,{}", s2);
-    }
 
 
 }
