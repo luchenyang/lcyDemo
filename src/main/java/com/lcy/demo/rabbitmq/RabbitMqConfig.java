@@ -64,6 +64,8 @@ public class RabbitMqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
         //设置当前的消费者数量
         container.setConcurrentConsumers(1);
         container.setMaxConcurrentConsumers(5);
+        //一个消费者一次可以从队列中拿出多少个消息
+        container.setPrefetchCount(10);
         //设置是否重回队列
         container.setDefaultRequeueRejected(false);
         //设置自动签收
