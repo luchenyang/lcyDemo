@@ -1,4 +1,4 @@
-package com.lcy.demo.dao;
+package com.lcy.demo.mybatis;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
@@ -30,7 +30,6 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
             return null;
         }
 
-    }
 
 
 }

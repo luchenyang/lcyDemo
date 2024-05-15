@@ -1,4 +1,4 @@
-package com.lcy.demo.dao;
+package com.lcy.demo.mybatis;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
